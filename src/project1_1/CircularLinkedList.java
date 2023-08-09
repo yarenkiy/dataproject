@@ -16,6 +16,8 @@ public class CircularLinkedList {
         head = null;
         size = 0;
     }
+    
+
 
     public void insert(String name) {
         Node newNode = new Node(name);
@@ -52,19 +54,7 @@ public class CircularLinkedList {
     size--;
 }
 
-    public void remove() {
-        if (head == null) {
-            return;
-        }
-        if (head.next == head) {
-            head = null;
-        } 
-        else {
-            head.next = head.next.next;
-        }
-        size--;
-    }
-
+    
     public void display() {
         if (head == null) {
             System.out.println("List is empty.");

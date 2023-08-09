@@ -6,6 +6,8 @@ package project1_1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,15 +18,18 @@ import java.util.Scanner;
 public class Project1_1 {
 
    
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         CircularLinkedList cl = new CircularLinkedList();
+        List<String> initialNames = new ArrayList<>();
+
         try {
             File file = new File("class.txt");
             Scanner sc = new Scanner(file);
 
-            while (sc.hasNext()) { 
+            while (sc.hasNext()) {
                 String name = sc.next();
                 cl.insert(name);
+                initialNames.add(name);
             }
 
             Random random = new Random();
@@ -52,12 +57,22 @@ public class Project1_1 {
                 turn++;
             }
 
-            System.out.println("Winner : " + cl.head.name);
+            System.out.println("Winner : " + getWinnerName(cl.head.name, initialNames));
 
-        } 
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
     }
+
+    private static String getWinnerName(String lastCharacter, List<String> initialNames) {
+        for (String name : initialNames) {
+            if (name.endsWith(lastCharacter)) {
+                return name;
+            }
+        }
+        return null;
+    }
+
+
     
 }
